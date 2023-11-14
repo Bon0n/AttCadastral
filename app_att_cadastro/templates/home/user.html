@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+<h1>Olá {{user}}, mantenha seus dados atualizados!</h1>
+<a href="{% url 'deslogar' %}">Deslogar</a>
+<div class="container mt-2">
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" data-bs-toggle="tab" href="#home">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-house-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M8 3.293l6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+                    <path fill-rule="evenodd"
+                          d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+                </svg>
+                Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#profile">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-person-bounding-box" viewBox="0 0 16 16">
+                    <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1h-3zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5zM.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5z"/>
+                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                </svg>
+                Profile</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#contact">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+                </svg>
+                Contato</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane fade show active" id="home">
+            <div class="row border g-0 rounded shadow-sm">
+                <div class="col p-4">
+                    <h3>Home</h3>
+                    <div class="row">
+                        <div class="col">
+                            <!-- Nome input -->
+                            <div class="form-floating mb-3">
+                                <input type="text" id="nome" class="form-control" placeholder="Nome" name="nome"
+                                       required/>
+                                <label for="nome">Nome Completo</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <!-- Email input -->
+                            <div class="form-floating mb-3">
+                                <input type="email" id="email" class="form-control" placeholder="Email" name="email"
+                                       required/>
+                                <label for="email">Email Pessoal</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <!-- Cor input -->
+                            <div class="form-floating mb-3">
+                                <select id="cor" class="form-select" name="cor" required>
+                                    <option selected>Selecione</option>
+                                    <option>Amarelo</option>
+                                    <option>Branco</option>
+                                    <option>Indígena</option>
+                                    <option>Pardo</option>
+                                    <option>Preto</option>
+                                </select>
+                                <label for="cor">Cor</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <!-- Cpf input -->
+                            <div class="form-floating mb-3">
+                                <input type="text" id="cpf" class="form-control" placeholder="Cpf" name="cpf" required/>
+                                <label for="cpf">CPF</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <!-- Estado Civil input -->
+                            <div class="form-floating mb-3">
+                                <select id="estado-civil" class="form-select" name="estado-civil" required>
+                                    <option selected>Selecione</option>
+                                    <option>Solteiro</option>
+                                    <option>Casado</option>
+                                    <option>União Estável</option>
+                                    <option>Separado / Divorciado</option>
+                                    <option>Viúvo</option>
+                                </select>
+                                <label for="estado-civil">Estado Civil</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <!-- Cor input -->
+                            <div class="form-floating mb-3">
+                                <select id="grau-escolaridade" class="form-select" name="grau-escolaridade" required>
+                                    <option selected>Selecione</option>
+                                    <option>Ensino Médio Incompleto</option>
+                                    <option>Ensino Médio Completo</option>
+                                    <option>Ensino Superior Incompleto</option>
+                                    <option>Ensino Médio Completo</option>
+                                    <option>Pós Graduação / MBA</option>
+                                    <option>Mestrado</option>
+                                    <option>Doutorado</option>
+                                </select>
+                                <label for="grau-escolaridade">Grau de Escolaridade</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2">
+                            <!-- Rua input -->
+                            <div class="form-floating input-group mb-3">
+                                <input type="text" id="cep" class="form-control" placeholder="CEP"
+                                       name="cep" aria-label="CEP" aria-describedby="pesquisar-cep"/>
+                                <button class="btn btn-outline-secondary" id="pesquisar-cep">Pesquisar</button>
+                                <label for="cep">Cep</label>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <!-- Rua input -->
+                            <div class="form-floating mb-3">
+                                <input type="text" id="rua" class="form-control" placeholder="Rua"
+                                       name="rua"/>
+                                <label for="rua">Rua</label>
+                            </div>
+                        </div>
+                        <div class="col-1">
+                            <!-- Bairro input -->
+                            <div class="form-floating mb-3">
+                                <input type="text" id="numero" class="form-control" placeholder="Número"
+                                       name="numero"/>
+                                <label for="numero">Número</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <!-- Bairro input -->
+                            <div class="form-floating mb-3">
+                                <input type="text" id="bairro" class="form-control" placeholder="Bairro"
+                                       name="bairro"/>
+                                <label for="bairro">Bairro</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <!-- Cidade input -->
+                            <div class="form-floating mb-3">
+                                <select id="estado" class="form-select" placeholder="Estado"
+                                       name="estado">
+                                    <option selected>Selecione</option>
+                                    {% for uf in ufs %}
+                                        <option>{{uf}}</option>
+                                    {% endfor %}
+                                </select>
+                                <label for="estado">Estado</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <!-- Cidade input -->
+                            <div class="form-floating mb-3">
+                                <select id="cidade" class="form-select" placeholder="Cidade"
+                                        name="cidade">
+                                    <option selected>Selecione</option>
+                                </select>
+                                <label for="cidade">Cidade</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <img src="images/home.jpg" class="img-thumbnail dimension">
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="profile">
+            <div class="row border g-0 rounded shadow-sm">
+                <div class="col p-4">
+                    <h3>Home</h3>
+                    <div class="row">
+                        <div class="col">
+                            <!-- Nome input -->
+                            <div class="form-floating mb-3">
+                                <input type="text" id="nome2" class="form-control" placeholder="Nome" name="nome"/>
+                                <label for="nome">Nome Completo</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <!-- Email input -->
+                            <div class="form-floating mb-3">
+                                <input type="email" id="email2" class="form-control" placeholder="Email" name="email"/>
+                                <label for="email">Email Pessoal</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <!-- Empresa input -->
+                            <div class="form-floating mb-3">
+                                <input type="text" id="empresa2" class="form-control" placeholder="Empresa"
+                                       name="empresa"/>
+                                <label for="empresa">Empresa</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <!-- Cpf input -->
+                            <div class="form-floating mb-3">
+                                <input type="text" id="cpf2" class="form-control" placeholder="Cpf" name="cpf"/>
+                                <label for="cpf">CPF</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <!-- Estado Civil input -->
+                            <div class="form-floating mb-3">
+                                <select id="estado-civil2" class="form-select">
+                                    <option selected>Selecione:</option>
+                                    <option>Solteiro</option>
+                                    <option>Casado</option>
+                                    <option>União Estável</option>
+                                    <option>Separado / Divorciado</option>
+                                    <option>Viúvo</option>
+                                </select>
+                                <label for="estado-civil">Estado Civil</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <!-- Endereço input -->
+                        <div class="form-floating mb-3">
+                            <input type="text" id="endereco2" class="form-control" placeholder="Endereço Completo"
+                                   name="endereco"/>
+                            <label for="endereco">Endereço Completo</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <img src="images/home.jpg" class="img-thumbnail dimension">
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="contact">
+            <div class="row border g-0 rounded shadow-sm">
+                <div class="col p-4">
+                    <h3>Contato</h3>
+                    <div class="row">
+                        <div class="col">
+                            <!-- Telefone Pessoal 1 input -->
+                            <div class="form-floating mb-3">
+                                <input type="text" id="telefonepessoal1" class="form-control"
+                                       placeholder="Telefone Pessoal 1" name="telefonepessoal1" required/>
+                                <label for="nome">Telefone Pessoal</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <!-- Telefone Pessoal 2 input -->
+                            <div class="form-floating mb-3">
+                                <input type="text" id="telefonepessoal2" class="form-control"
+                                       placeholder="Telefone Pessoal 2" name="telefonepessoal2"/>
+                                <label for="nome">Telefone Pessoal 2</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <!-- Nome Contato 1 input -->
+                            <div class="form-floating mb-3">
+                                <input type="text" id="nome-emergencia1" class="form-control"
+                                       placeholder="Nome Contato de Emergência"
+                                       name="nome-emergencia1"/>
+                                <label for="nome-emergencia1">Nome Contato de Emergência</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <!-- Cpf input -->
+                            <div class="form-floating mb-3">
+                                <input type="text" id="telefone-emergencia1" class="form-control"
+                                       placeholder="Telefone Contato de Emergência"
+                                       name="telefone-emergencia1"/>
+                                <label for="telefone-emergencia1">Telefone Contato de Emergência</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <!-- Estado Civil input -->
+                            <div class="form-floating mb-3">
+                                <select id="grau-parentesco1" class="form-select" name="grau-parentesco1">
+                                    <option selected>Selecione:</option>
+                                    <option>2º Grau</option>
+                                    <option>2º Grau</option>
+                                    <option>3º Grau</option>
+                                    <option>Sem grau de parentesco</option>
+                                </select>
+                                <label for="grau-parentesco1">Estado Civil</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <!-- Nome Contato 1 input -->
+                            <div class="form-floating mb-3">
+                                <input type="text" id="nome-emergencia2" class="form-control"
+                                       placeholder="Nome Contato de Emergência"
+                                       name="nome-emergencia2"/>
+                                <label for="nome-emergencia2">Nome Contato de Emergência 2</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <!-- Cpf input -->
+                            <div class="form-floating mb-3">
+                                <input type="text" id="telefone-emergencia2" class="form-control"
+                                       placeholder="Telefone Contato de Emergência"
+                                       name="telefone-emergencia2"/>
+                                <label for="telefone-emergencia2">Telefone Contato de Emergência 2</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <!-- Estado Civil input -->
+                            <div class="form-floating mb-3">
+                                <select id="grau-parentesco2" class="form-select" name="grau-parentesco2">
+                                    <option selected>Selecione:</option>
+                                    <option>2º Grau</option>
+                                    <option>2º Grau</option>
+                                    <option>3º Grau</option>
+                                    <option>Sem grau de parentesco</option>
+                                </select>
+                                <label for="grau-parentesco2">Estado Civil</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <img src="images/home.jpg" class="img-thumbnail dimension">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+</body>
+</html>
