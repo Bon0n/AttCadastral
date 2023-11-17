@@ -23,7 +23,7 @@
                     <path fill-rule="evenodd"
                           d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
                 </svg>
-                Home</a>
+                Dados Pessoais</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" data-bs-toggle="tab" href="#profile">
@@ -33,6 +33,24 @@
                     <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                 </svg>
                 Profile</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#work">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path
+                            d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+                Trabalho</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#health">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path fill-rule="evenodd"
+                          d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                </svg>
+                Saúde</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" data-bs-toggle="tab" href="#contact">
@@ -128,8 +146,9 @@
                                 <!-- Rua input -->
                                 <div class="form-floating input-group mb-3">
                                     <input type="text" id="cep" class="form-control" placeholder="CEP"
-                                           name="cep" aria-label="CEP" aria-describedby="buscar-cep"/>
-                                    <button  type="button" class="btn btn-outline-secondary" id="buscar-cep" name="buscar">
+                                           name="cep" aria-label="CEP" aria-describedby="buscar-cep" required/>
+                                    <button type="button" class="btn btn-outline-secondary" id="buscar-cep"
+                                            name="buscar">
                                         Pesquisar
                                     </button>
                                     <label for="cep">Cep</label>
@@ -139,7 +158,7 @@
                                 <!-- Rua input -->
                                 <div class="form-floating mb-3">
                                     <input type="text" id="rua" class="form-control" placeholder="Rua"
-                                           name="rua"/>
+                                           name="rua" required/>
                                     <label for="rua">Rua</label>
                                 </div>
                             </div>
@@ -147,7 +166,7 @@
                                 <!-- Bairro input -->
                                 <div class="form-floating mb-3">
                                     <input type="text" id="numero" class="form-control" placeholder="Número"
-                                           name="numero"/>
+                                           name="numero" required/>
                                     <label for="numero">Número</label>
                                 </div>
                             </div>
@@ -155,7 +174,7 @@
                                 <!-- Bairro input -->
                                 <div class="form-floating mb-3">
                                     <input type="text" id="bairro" class="form-control" placeholder="Bairro"
-                                           name="bairro"/>
+                                           name="bairro" required/>
                                     <label for="bairro">Bairro</label>
                                 </div>
                             </div>
@@ -165,7 +184,7 @@
                                 <!-- Estado input -->
                                 <div class="form-floating mb-3">
                                     <select id="estado" class="form-select" placeholder="Estado"
-                                            name="estado">
+                                            name="estado" required>
                                         <option selected>Selecione</option>
                                         {% for uf in ufs %}
                                         <option value="{{uf.sigla}}">{{uf.nome}}</option>
@@ -178,7 +197,7 @@
                                 <!-- Cidade input -->
                                 <div class="form-floating mb-3">
                                     <select id="cidade" class="form-select cidade" placeholder="Cidade"
-                                            name="cidades">
+                                            name="cidades" required>
                                         <option selected class="depois" value="">Selecione</option>
                                     </select>
                                     <label for="cidade">Cidade</label>
