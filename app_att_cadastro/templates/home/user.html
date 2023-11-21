@@ -26,15 +26,6 @@
                 Dados Pessoais</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab" href="#profile">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                     class="bi bi-person-bounding-box" viewBox="0 0 16 16">
-                    <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1h-3zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5zM.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5z"/>
-                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                </svg>
-                Profile</a>
-        </li>
-        <li class="nav-item">
             <a class="nav-link" data-bs-toggle="tab" href="#work">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -72,7 +63,8 @@
                             <div class="col">
                                 <!-- Nome input -->
                                 <div class="form-floating mb-3">
-                                    <input type="text" id="nome" class="form-control" placeholder="Nome" name="nome"
+                                    <input type="text" id="nome" class="form-control" placeholder="Nome Completo"
+                                           name="nome"
                                            required/>
                                     <label for="nome">Nome Completo</label>
                                 </div>
@@ -80,7 +72,8 @@
                             <div class="col">
                                 <!-- Email input -->
                                 <div class="form-floating mb-3">
-                                    <input type="email" id="email" class="form-control" placeholder="Email" name="email"
+                                    <input type="email" id="email" class="form-control" placeholder="Email Pessoal"
+                                           name="email"
                                            required/>
                                     <label for="email">Email Pessoal</label>
                                 </div>
@@ -124,7 +117,7 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <!-- Cor input -->
+                                <!-- Grau escolaridade input -->
                                 <div class="form-floating mb-3">
                                     <select id="grau-escolaridade" class="form-select" name="grau-escolaridade"
                                             required>
@@ -143,7 +136,7 @@
                         </div>
                         <div class="row">
                             <div class="col-2">
-                                <!-- Rua input -->
+                                <!-- CEP input -->
                                 <div class="form-floating input-group mb-3">
                                     <input type="text" id="cep" class="form-control" placeholder="CEP"
                                            name="cep" aria-label="CEP" aria-describedby="buscar-cep" required/>
@@ -163,7 +156,7 @@
                                 </div>
                             </div>
                             <div class="col-1">
-                                <!-- Bairro input -->
+                                <!-- Número casa input -->
                                 <div class="form-floating mb-3">
                                     <input type="text" id="numero" class="form-control" placeholder="Número"
                                            name="numero" required/>
@@ -209,66 +202,93 @@
                 <div class="col-auto">
                     <img src="images/home.jpg" class="img-thumbnail dimension">
                 </div>
-
             </div>
         </div>
-        <div class="tab-pane fade" id="profile">
+        <div class="tab-pane fade" id="health">
             <div class="row border g-0 rounded shadow-sm">
                 <div class="col p-4">
-                    <h3>Home</h3>
+                    <h3>Saúde</h3>
                     <div class="row">
                         <div class="col">
-                            <!-- Nome input -->
+                            <!-- Alergias input -->
                             <div class="form-floating mb-3">
-                                <input type="text" id="nome2" class="form-control" placeholder="Nome" name="nome"/>
-                                <label for="nome">Nome Completo</label>
+                                <input type="text" id="alergias" class="form-control" placeholder="Alergias"
+                                       name="alergias"/>
+                                <label for="alergias">Alergias</label>
                             </div>
                         </div>
                         <div class="col">
-                            <!-- Email input -->
+                            <!-- Tratamento de Saúde input -->
                             <div class="form-floating mb-3">
-                                <input type="email" id="email2" class="form-control" placeholder="Email" name="email"/>
-                                <label for="email">Email Pessoal</label>
+                                <input type="text" id="tratamento-saude" class="form-control"
+                                       placeholder="Tratamento de Saúde" name="tratamento-saude"/>
+                                <label for="tratamento-saude">Tratamento de Saúde</label>
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col">
+                            <!-- Uso de medicamento contínuo input -->
+                            <div class="form-floating mb-3">
+                                <input type="text" id="medicamento-continuo" class="form-control"
+                                       placeholder="Uso de medicamento contínuo"
+                                       name="medicamento-continuo"/>
+                                <label for="medicamento-continuo">Uso de medicamento contínuo</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <img src="images/home.jpg" class="img-thumbnail dimension">
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="work">
+            <div class="row border g-0 rounded shadow-sm">
+                <div class="col p-4">
+                    <h3>Trabalho</h3>
                     <div class="row">
                         <div class="col">
                             <!-- Empresa input -->
                             <div class="form-floating mb-3">
-                                <input type="text" id="empresa2" class="form-control" placeholder="Empresa"
-                                       name="empresa"/>
+                                <input type="text" id="empresa" class="form-control" placeholder="Empresa"
+                                       name="empresa" required/>
                                 <label for="empresa">Empresa</label>
                             </div>
                         </div>
                         <div class="col">
-                            <!-- Cpf input -->
+                            <!-- Email Corporativo input -->
                             <div class="form-floating mb-3">
-                                <input type="text" id="cpf2" class="form-control" placeholder="Cpf" name="cpf"/>
-                                <label for="cpf">CPF</label>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <!-- Estado Civil input -->
-                            <div class="form-floating mb-3">
-                                <select id="estado-civil2" class="form-select">
-                                    <option selected>Selecione:</option>
-                                    <option>Solteiro</option>
-                                    <option>Casado</option>
-                                    <option>União Estável</option>
-                                    <option>Separado / Divorciado</option>
-                                    <option>Viúvo</option>
-                                </select>
-                                <label for="estado-civil">Estado Civil</label>
+                                <input type="email" id="email-corporativo" class="form-control"
+                                       placeholder="Email Corporativo" name="email-corporativo" required/>
+                                <label for="email-corporativo">Email Corporativo</label>
                             </div>
                         </div>
                     </div>
-                    <div class="col">
-                        <!-- Endereço input -->
-                        <div class="form-floating mb-3">
-                            <input type="text" id="endereco2" class="form-control" placeholder="Endereço Completo"
-                                   name="endereco"/>
-                            <label for="endereco">Endereço Completo</label>
+                    <div class="row">
+                        <div class="col">
+                            <!-- Gerente input -->
+                            <div class="form-floating mb-3">
+                                <input type="text" id="gerente" class="form-control" placeholder="Gerente"
+                                       name="gerente" required/>
+                                <label for="gerente">Gerente</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <!-- Departamento input -->
+                            <div class="form-floating mb-3">
+                                <input type="text" id="departamento" class="form-control" placeholder="Departamento"
+                                       name="departamento" required/>
+                                <label for="departamento">Departamento</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <!-- Cargo input -->
+                            <div class="form-floating mb-3">
+                                <input type="text" id="cargo" class="form-control" placeholder="Cargo" name="cargo"
+                                       required/>
+                                <label for="cargo">Cargo</label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -305,36 +325,36 @@
                             <div class="form-floating mb-3">
                                 <input type="text" id="nome-emergencia1" class="form-control"
                                        placeholder="Nome Contato de Emergência"
-                                       name="nome-emergencia1"/>
+                                       name="nome-emergencia1" required/>
                                 <label for="nome-emergencia1">Nome Contato de Emergência</label>
                             </div>
                         </div>
                         <div class="col">
-                            <!-- Cpf input -->
+                            <!-- Telefone emergencial 1 input -->
                             <div class="form-floating mb-3">
                                 <input type="text" id="telefone-emergencia1" class="form-control"
                                        placeholder="Telefone Contato de Emergência"
-                                       name="telefone-emergencia1"/>
+                                       name="telefone-emergencia1" required/>
                                 <label for="telefone-emergencia1">Telefone Contato de Emergência</label>
                             </div>
                         </div>
                         <div class="col">
-                            <!-- Estado Civil input -->
+                            <!-- Grau de Parentesco 1 input -->
                             <div class="form-floating mb-3">
                                 <select id="grau-parentesco1" class="form-select" name="grau-parentesco1">
                                     <option selected>Selecione:</option>
-                                    <option>2º Grau</option>
+                                    <option>1º Grau</option>
                                     <option>2º Grau</option>
                                     <option>3º Grau</option>
                                     <option>Sem grau de parentesco</option>
                                 </select>
-                                <label for="grau-parentesco1">Estado Civil</label>
+                                <label for="grau-parentesco1">Grau de Parentesco</label>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <!-- Nome Contato 1 input -->
+                            <!-- Nome Contato 2 input -->
                             <div class="form-floating mb-3">
                                 <input type="text" id="nome-emergencia2" class="form-control"
                                        placeholder="Nome Contato de Emergência"
@@ -343,7 +363,7 @@
                             </div>
                         </div>
                         <div class="col">
-                            <!-- Cpf input -->
+                            <!-- Telefone emergencia 2 input -->
                             <div class="form-floating mb-3">
                                 <input type="text" id="telefone-emergencia2" class="form-control"
                                        placeholder="Telefone Contato de Emergência"
@@ -352,16 +372,16 @@
                             </div>
                         </div>
                         <div class="col">
-                            <!-- Estado Civil input -->
+                            <!-- Grau de parentesco input -->
                             <div class="form-floating mb-3">
                                 <select id="grau-parentesco2" class="form-select" name="grau-parentesco2">
                                     <option selected>Selecione:</option>
-                                    <option>2º Grau</option>
+                                    <option>1º Grau</option>
                                     <option>2º Grau</option>
                                     <option>3º Grau</option>
                                     <option>Sem grau de parentesco</option>
                                 </select>
-                                <label for="grau-parentesco2">Estado Civil</label>
+                                <label for="grau-parentesco2">Grau de parentesco</label>
                             </div>
                         </div>
                     </div>
@@ -371,6 +391,9 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary mt-3">Salvar Alterações</button>
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
