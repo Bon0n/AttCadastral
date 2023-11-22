@@ -1,3 +1,60 @@
+from django.contrib.auth.models import User
 from django.db import models
 
-# Create your models here.
+class Funcionario(models.Model):
+    #Usuario
+    id_login = models.ForeignKey(
+        User, on_delete=models.SET('DELETADO')
+    )
+    # Dados Pessoais
+    nome = models.CharField(max_length=200)
+    email = models.CharField(max_length=200)
+    cor = models.CharField(max_length=30)
+    possui_filhos = models.CharField(max_length=20)
+    genero = models.CharField(max_length=30)
+    cpf = models.CharField(max_length=30)
+    estado_civil = models.CharField(max_length=60)
+    grau_escolaridade = models.CharField(max_length=80)
+    cep = models.CharField(max_length=15)
+    rua = models.CharField(max_length=200)
+    numero = models.CharField(max_length=10)
+    bairro = models.CharField(max_length=200)
+    estado = models.CharField(max_length=60)
+    cidade = models.CharField(max_length=200)
+    # Trabalho
+    empresa = models.CharField(max_length=60)
+    email_corporativo = models.CharField(max_length=200)
+    modelo_trabalho = models.CharField(max_length=60)
+    gerente = models.CharField(max_length=200)
+    departamento = models.CharField(max_length=100)
+    cargo = models.CharField(max_length=200)
+    # Saude
+    alergia = models.TextField(null=True, blank=True)
+    tratamento_saude = models.TextField(null=True, blank=True)
+    medicamento_continuo = models.TextField(null=True, blank=True)
+    # Contato
+    telefonepessoal1 = models.CharField(max_length=30)
+    telefonepessoal2 = models.CharField(max_length=30, null=True, blank=True)
+    nome_emergencia1 = models.CharField(max_length=200)
+    telefone_emergencia1 = models.CharField(max_length=30)
+    grau_parentesco1 = models.CharField(max_length=30)
+    nome_emergencia2 = models.CharField(max_length=200, null=True, blank=True)
+    telefone_emergencia2 = models.CharField(max_length=30, null=True, blank=True)
+    grau_parentesco2 = models.CharField(max_length=30, null=True, blank=True)
+    # Dependentes
+    nome_dependente1 = models.CharField(max_length=200, null=True, blank=True)
+    cpf_dependente1 = models.CharField(max_length=30, null=True, blank=True)
+    nascimento_dependente1 = models.CharField(max_length=30, null=True, blank=True)
+    grau_parentesco_dependente1 = models.CharField(max_length=30, null=True, blank=True)
+    nome_dependente2 = models.CharField(max_length=200, null=True, blank=True)
+    cpf_dependente2 = models.CharField(max_length=30, null=True, blank=True)
+    nascimento_dependente2 = models.CharField(max_length=30, null=True, blank=True)
+    grau_parentesco_dependente2 = models.CharField(max_length=30, null=True, blank=True)
+    nome_dependente3 = models.CharField(max_length=200, null=True, blank=True)
+    cpf_dependente3 = models.CharField(max_length=30, null=True, blank=True)
+    nascimento_dependente3 = models.CharField(max_length=30, null=True, blank=True)
+    grau_parentesco_dependente3 = models.CharField(max_length=30, null=True, blank=True)
+    nome_dependente4 = models.CharField(max_length=200, null=True, blank=True)
+    cpf_dependente4 = models.CharField(max_length=30, null=True, blank=True)
+    nascimento_dependente4 = models.CharField(max_length=30, null=True, blank=True)
+    grau_parentesco_dependente4 = models.CharField(max_length=30, null=True, blank=True)

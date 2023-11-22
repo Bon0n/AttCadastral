@@ -127,10 +127,10 @@ AUTH_LDAP_SERVER_URI = 'ldap://networksecuritybr.local:389'
 AUTH_LDAP_BIND_DN = 'CN=Andrei Bonon de Oliveira,OU=INFRAESTRUTURA SUPORTE TI,OU=USUARIOS,OU=FITCARD,OU=CORP,DC=networksecuritybr,DC=local'
 AUTH_LDAP_BIND_PASSWORD = 'Mudar@123'
 AUTH_LDAP_USER_SEARCH = LDAPSearch(
-    'OU=INFRAESTRUTURA SUPORTE TI,OU=USUARIOS,OU=FITCARD,OU=CORP,DC=networksecuritybr,DC=local', ldap.SCOPE_SUBTREE,
+    'OU=CORP,DC=networksecuritybr,DC=local', ldap.SCOPE_SUBTREE,
     '(sAMAccountName=%(user)s)')
 AUTH_LDAP_GROUP_SEARCH = LDAPSearch(
-    'CN=FITCARD-INFRAESTRUTURA-SUPORTE,OU=ACESSO,OU=GRUPOS,OU=FITCARD,OU=CORP,DC=networksecuritybr,DC=local',
+    'CN=G_ACESSO_WIFI,OU=GRUPOS,OU=GERAL,OU=CORP,DC=networksecuritybr,DC=local',
     ldap.SCOPE_SUBTREE, '(objectClass=groupOfNames)')
 AUTH_LDAP_GROUP_TYPE = GroupOfNamesType()
 AUTH_LDAP_MIRROR_GROUPS = True

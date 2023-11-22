@@ -3,7 +3,7 @@ $("#dadosPessoais select[name='estado']").on('change', function(){
         var $this = $(this);
         if($this.val() != ''){
             $.ajax({
-                url: '/'+$this.val(),
+                url: 'pegarcidades/'+$this.val(),
                 type: 'GET',
                 success: function(resp){
                     let options = '';

@@ -23,6 +23,7 @@ urlpatterns = [
     path('logar', views.logar, name='logar'),
     path('home', views.home, name='home'),
     path('deslogar', views.deslogar, name='deslogar'),
-    path('<str:uf>', views.pegar_cidade, name='pegar_cidades'),
-    path('buscacep/<int:cep>', views.busca_cep, name='busca_cep')
+    path('pegarcidades/<str:uf>', views.pegar_cidade, name='pegar_cidades'),
+    path('buscacep/<int:cep>', views.busca_cep, name='busca_cep'),
+    path('salvardados', views.salvar_dados, name='salvardados')
 ]

@@ -6,12 +6,40 @@
     <title>Cadastro</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
+<header>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container">
+            <span class="navbar-brand" style="font-family: 'Montserrat', sans-serif; font-weight:700">Atualização Cadastral</span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                </ul>
+                <form class="d-flex">
+                    <label class="mt-2 me-3" style="font-family: 'Montserrat', sans-serif; font-weight:400">Logado como:
+                        {{user.first_name}} {{user.last_name}}</label>
+                    <button class="btn btn-outline-danger" type="button"><a
+                            style="color: inherit; text-decoration: none" href="{% url 'deslogar' %}">Sair</a></button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div class="">
+
+    </div>
+</header>
 <body>
-<h1>Olá {{user}}, mantenha seus dados atualizados!</h1>
-<a href="{% url 'deslogar' %}">Deslogar</a>
 <div class="container mt-2">
     <ul class="nav nav-tabs">
         <li class="nav-item">
@@ -52,20 +80,31 @@
                 </svg>
                 Contato</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#dependents">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
+                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                Dependentes</a>
+        </li>
     </ul>
-    <div class="tab-content">
-        <div class="tab-pane fade show active" id="home">
-            <div class="row border g-0 rounded shadow-sm">
-                <div class="col p-4">
-                    <h3>Dados Pessoais</h3>
-                    <form id="dadosPessoais">
+    <form id="dadosPessoais" method="post" action="{% url 'salvardados' %}">
+        {% csrf_token %}
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="home">
+                <div class="row border g-0 rounded shadow-sm">
+                    <div class="col p-4">
+                        <h3>Dados Pessoais</h3>
                         <div class="row">
                             <div class="col">
                                 <!-- Nome input -->
                                 <div class="form-floating mb-3">
                                     <input type="text" id="nome" class="form-control" placeholder="Nome Completo"
-                                           name="nome"
-                                           required/>
+                                           name="nome" value="{{funcionario.nome}}" required maxlength="190"/>
                                     <label for="nome">Nome Completo</label>
                                 </div>
                             </div>
@@ -73,8 +112,7 @@
                                 <!-- Email input -->
                                 <div class="form-floating mb-3">
                                     <input type="email" id="email" class="form-control" placeholder="Email Pessoal"
-                                           name="email"
-                                           required/>
+                                           name="email" value="{{funcionario.email}}" required maxlength="190"/>
                                     <label for="email">Email Pessoal</label>
                                 </div>
                             </div>
@@ -84,21 +122,57 @@
                                 <!-- Cor input -->
                                 <div class="form-floating mb-3">
                                     <select id="cor" class="form-select" name="cor" required>
+                                        {% if funcionario.cor %}
+                                        <option selected>{{funcionario.cor}}</option>
+                                        {% else %}
                                         <option selected>Selecione</option>
-                                        <option>Amarelo</option>
-                                        <option>Branco</option>
-                                        <option>Indígena</option>
-                                        <option>Pardo</option>
-                                        <option>Preto</option>
+                                        {% endif %}
+                                        <option value="Amarelo">Amarelo</option>
+                                        <option value="Branco">Branco</option>
+                                        <option value="Indígena">Indígena</option>
+                                        <option value="Pardo">Pardo</option>
+                                        <option value="Preto">Preto</option>
                                     </select>
                                     <label for="cor">Cor</label>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <!-- Cor input -->
+                                <div class="form-floating mb-3">
+                                    <select id="possui-filhos" class="form-select" name="possui-filhos" required>
+                                        {% if funcionario.possui_filhos %}
+                                        <option selected>{{funcionario.possui_filhos}}</option>
+                                        {% else %}
+                                        <option selected>Selecione</option>
+                                        {% endif %}
+                                        <option>Sim</option>
+                                        <option>Não</option>
+                                    </select>
+                                    <label for="cor">Possui Filhos</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- Genero input -->
+                                <div class="form-floating mb-3">
+                                    <select id="genero" class="form-select" name="genero" required>
+                                        {% if funcionario.genero %}
+                                        <option selected>{{funcionario.genero}}</option>
+                                        {% else %}
+                                        <option selected>Selecione</option>
+                                        {% endif %}
+                                        <option>Feminino</option>
+                                        <option>Masculino</option>
+                                        <option>Outros</option>
+                                        <option>Prefiro não informar</option>
+                                    </select>
+                                    <label for="cor">Gênero</label>
                                 </div>
                             </div>
                             <div class="col">
                                 <!-- Cpf input -->
                                 <div class="form-floating mb-3">
                                     <input type="text" id="cpf" class="form-control" placeholder="Cpf" name="cpf"
-                                           required/>
+                                           value="{{funcionario.cpf}}" required maxlength="20"/>
                                     <label for="cpf">CPF</label>
                                 </div>
                             </div>
@@ -106,7 +180,11 @@
                                 <!-- Estado Civil input -->
                                 <div class="form-floating mb-3">
                                     <select id="estado-civil" class="form-select" name="estado-civil" required>
+                                        {% if funcionario.estado_civil %}
+                                        <option selected>{{funcionario.estado_civil}}</option>
+                                        {% else %}
                                         <option selected>Selecione</option>
+                                        {% endif %}
                                         <option>Solteiro</option>
                                         <option>Casado</option>
                                         <option>União Estável</option>
@@ -121,7 +199,11 @@
                                 <div class="form-floating mb-3">
                                     <select id="grau-escolaridade" class="form-select" name="grau-escolaridade"
                                             required>
+                                        {% if funcionario.grau_escolaridade %}
+                                        <option selected>{{funcionario.grau_escolaridade}}</option>
+                                        {% else %}
                                         <option selected>Selecione</option>
+                                        {% endif %}
                                         <option>Ensino Médio Incompleto</option>
                                         <option>Ensino Médio Completo</option>
                                         <option>Ensino Superior Incompleto</option>
@@ -139,7 +221,8 @@
                                 <!-- CEP input -->
                                 <div class="form-floating input-group mb-3">
                                     <input type="text" id="cep" class="form-control" placeholder="CEP"
-                                           name="cep" aria-label="CEP" aria-describedby="buscar-cep" required/>
+                                           name="cep" aria-label="CEP" aria-describedby="buscar-cep" required
+                                           value="{{funcionario.cep}}" maxlength="8"/>
                                     <button type="button" class="btn btn-outline-secondary" id="buscar-cep"
                                             name="buscar">
                                         Pesquisar
@@ -151,7 +234,7 @@
                                 <!-- Rua input -->
                                 <div class="form-floating mb-3">
                                     <input type="text" id="rua" class="form-control" placeholder="Rua"
-                                           name="rua" required/>
+                                           name="rua" required value="{{funcionario.rua}}" maxlength="190"/>
                                     <label for="rua">Rua</label>
                                 </div>
                             </div>
@@ -159,7 +242,7 @@
                                 <!-- Número casa input -->
                                 <div class="form-floating mb-3">
                                     <input type="text" id="numero" class="form-control" placeholder="Número"
-                                           name="numero" required/>
+                                           name="numero" required value="{{funcionario.numero}}" maxlength="8"/>
                                     <label for="numero">Número</label>
                                 </div>
                             </div>
@@ -167,7 +250,7 @@
                                 <!-- Bairro input -->
                                 <div class="form-floating mb-3">
                                     <input type="text" id="bairro" class="form-control" placeholder="Bairro"
-                                           name="bairro" required/>
+                                           name="bairro" required value="{{funcionario.bairro}}" maxlength="190"/>
                                     <label for="bairro">Bairro</label>
                                 </div>
                             </div>
@@ -176,9 +259,13 @@
                             <div class="col">
                                 <!-- Estado input -->
                                 <div class="form-floating mb-3">
-                                    <select id="estado" class="form-select" placeholder="Estado"
+                                    <select id="estado" class="form-select"
                                             name="estado" required>
+                                        {% if funcionario.estado %}
+                                        <option selected>{{funcionario.estado}}</option>
+                                        {% else %}
                                         <option selected>Selecione</option>
+                                        {% endif %}
                                         {% for uf in ufs %}
                                         <option value="{{uf.sigla}}">{{uf.nome}}</option>
                                         {% endfor %}
@@ -189,212 +276,471 @@
                             <div class="col">
                                 <!-- Cidade input -->
                                 <div class="form-floating mb-3">
-                                    <select id="cidade" class="form-select cidade" placeholder="Cidade"
+                                    <select id="cidade" class="form-select cidade"
                                             name="cidades" required>
-                                        <option selected class="depois" value="">Selecione</option>
+                                        {% if funcionario.cidade %}
+                                        <option selected class="depois">{{funcionario.cidade}}</option>
+                                        {% else %}
+                                        <option selected class="depois">Selecione</option>
+                                        {% endif %}
                                     </select>
                                     <label for="cidade">Cidade</label>
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
-                <div class="col-auto">
-                    <img src="images/home.jpg" class="img-thumbnail dimension">
+            </div>
+            <div class="tab-pane fade" id="health">
+                <div class="row border g-0 rounded shadow-sm">
+                    <div class="col p-4">
+                        <h3>Saúde</h3>
+                        <div class="row">
+                            <div class="col">
+                                <!-- Alergias input -->
+                                <div class="form-floating mb-3">
+                                    <input type="text" id="alergia" class="form-control" placeholder="Alergias"
+                                           name="alergia" value="{{funcionario.alergia}}"/>
+                                    <label for="alergia">Alergias</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- Tratamento de Saúde input -->
+                                <div class="form-floating mb-3">
+                                    <input type="text" id="tratamento-saude" class="form-control"
+                                           placeholder="Tratamento de Saúde" name="tratamento-saude"
+                                           value="{{funcionario.tratamento_saude}}"/>
+                                    <label for="tratamento-saude">Tratamento de Saúde</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <!-- Uso de medicamento contínuo input -->
+                                <div class="form-floating mb-3">
+                                    <input type="text" id="medicamento-continuo" class="form-control"
+                                           placeholder="Uso de medicamento contínuo"
+                                           name="medicamento-continuo" value="{{funcionario.medicamento_continuo}}"/>
+                                    <label for="medicamento-continuo">Uso de medicamento contínuo</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--
+                    <div class="col-auto">
+                        <img src="images/home.jpg" class="img-thumbnail dimension">
+                    </div>
+                    -->
+                </div>
+            </div>
+            <div class="tab-pane fade" id="work">
+                <div class="row border g-0 rounded shadow-sm">
+                    <div class="col p-4">
+                        <h3>Trabalho</h3>
+                        <div class="row">
+                            <div class="col">
+                                <!-- Empresa input -->
+                                <div class="form-floating mb-3">
+                                    <input type="text" id="empresa" class="form-control" placeholder="Empresa"
+                                           name="empresa" required value="{{funcionario.empresa}}" maxlength="50"/>
+                                    <label for="empresa">Empresa</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- Email Corporativo input -->
+                                <div class="form-floating mb-3">
+                                    <input type="email" id="email-corporativo" class="form-control"
+                                           placeholder="Email Corporativo" name="email-corporativo" required
+                                           value="{{funcionario.email_corporativo}}" maxlength="190"/>
+                                    <label for="email-corporativo">Email Corporativo</label>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <!-- Cor input -->
+                                <div class="form-floating mb-3">
+                                    <select id="modelo-trabalho" class="form-select" name="modelo-trabalho" required>
+                                        {% if funcionario.modelo_trabalho %}
+                                        <option selected>{{funcionario.modelo_trabalho}}</option>
+                                        {% else %}
+                                        <option selected>Selecione</option>
+                                        {% endif %}
+                                        <option value="Presencial">Presencial</option>
+                                        <option value="Híbrido">Híbrido</option>
+                                        <option value="Teletrabalho">Teletrabalho</option>
+                                    </select>
+                                    <label for="modelo-trabalho">Modelo de Trabalho</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <!-- Gerente input -->
+                                <div class="form-floating mb-3">
+                                    <input type="text" id="gerente" class="form-control" placeholder="Gerente"
+                                           name="gerente" required value="{{funcionario.gerente}}" maxlength="190"/>
+                                    <label for="gerente">Gerente</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- Departamento input -->
+                                <div class="form-floating mb-3">
+                                    <input type="text" id="departamento" class="form-control" placeholder="Departamento"
+                                           name="departamento" required value="{{funcionario.departamento}}"
+                                           maxlength="90"/>
+                                    <label for="departamento">Departamento</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- Cargo input -->
+                                <div class="form-floating mb-3">
+                                    <input type="text" id="cargo" class="form-control" placeholder="Cargo" name="cargo"
+                                           required value="{{funcionario.cargo}}" maxlength="190"/>
+                                    <label for="cargo">Cargo</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--
+                    <div class="col-auto">
+                        <img src="images/home.jpg" class="img-thumbnail dimension">
+                    </div>
+                    -->
+                </div>
+            </div>
+            <div class="tab-pane fade" id="contact">
+                <div class="row border g-0 rounded shadow-sm">
+                    <div class="col p-4">
+                        <h3>Contato</h3>
+                        <div class="row">
+                            <div class="col">
+                                <!-- Telefone Pessoal 1 input -->
+                                <div class="form-floating mb-3">
+                                    <input type="text" id="telefonepessoal1" class="form-control"
+                                           placeholder="Telefone Pessoal 1" name="telefonepessoal1" required
+                                           value="{{funcionario.telefonepessoal1}}" maxlength="20"/>
+                                    <label for="nome">Telefone Pessoal</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- Telefone Pessoal 2 input -->
+                                <div class="form-floating mb-3">
+                                    <input type="text" id="telefonepessoal2" class="form-control"
+                                           placeholder="Telefone Pessoal 2" name="telefonepessoal2"
+                                           value="{{funcionario.telefonepessoal2}}" maxlength="20"/>
+                                    <label for="nome">Telefone Pessoal 2</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <!-- Nome Contato 1 input -->
+                                <div class="form-floating mb-3">
+                                    <input type="text" id="nome-emergencia1" class="form-control"
+                                           placeholder="Nome Contato de Emergência"
+                                           name="nome-emergencia1" required value="{{funcionario.nome_emergencia1}}"
+                                           maxlength="190"/>
+                                    <label for="nome-emergencia1">Nome Contato de Emergência</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- Telefone emergencial 1 input -->
+                                <div class="form-floating mb-3">
+                                    <input type="text" id="telefone-emergencia1" class="form-control"
+                                           placeholder="Telefone Contato de Emergência"
+                                           name="telefone-emergencia1" required
+                                           value="{{funcionario.telefone_emergencia1}}" maxlength="20"/>
+                                    <label for="telefone-emergencia1">Telefone Contato de Emergência</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- Grau de Parentesco 1 input -->
+                                <div class="form-floating mb-3">
+                                    <select id="grau-parentesco1" class="form-select" name="grau-parentesco1">
+                                        {% if funcionario.grau_parentesco1 %}
+                                        <option selected>{{funcionario.grau_parentesco1}}</option>
+                                        {% else %}
+                                        <option selected>Selecione</option>
+                                        {% endif %}
+                                        <option value="1º Grau">1º Grau</option>
+                                        <option value="2º Grau">2º Grau</option>
+                                        <option value="3º Grau">3º Grau</option>
+                                        <option value="Sem grau de parentesco">Sem grau de parentesco</option>
+                                    </select>
+                                    <label for="grau-parentesco1">Grau de Parentesco</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <!-- Nome Contato 2 input -->
+                                <div class="form-floating mb-3">
+                                    <input type="text" id="nome-emergencia2" class="form-control"
+                                           placeholder="Nome Contato de Emergência"
+                                           name="nome-emergencia2" value="{{funcionario.nome_emergencia2}}"
+                                           maxlength="190"/>
+                                    <label for="nome-emergencia2">Nome Contato de Emergência 2</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- Telefone emergencia 2 input -->
+                                <div class="form-floating mb-3">
+                                    <input type="text" id="telefone-emergencia2" class="form-control"
+                                           placeholder="Telefone Contato de Emergência"
+                                           name="telefone-emergencia2" value="{{funcionario.telefone_emergencia2}}"
+                                           maxlength="20"/>
+                                    <label for="telefone-emergencia2">Telefone Contato de Emergência 2</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- Grau de parentesco input -->
+                                <div class="form-floating mb-3">
+                                    <select id="grau-parentesco2" class="form-select" name="grau-parentesco2">
+                                        {% if funcionario.grau_parentesco2 %}
+                                        <option selected>{{funcionario.grau_parentesco2}}</option>
+                                        {% else %}
+                                        <option selected>Selecione</option>
+                                        {% endif %}
+                                        <option value="1º Grau">1º Grau</option>
+                                        <option value="2º Grau">2º Grau</option>
+                                        <option value="3º Grau">3º Grau</option>
+                                        <option value="Sem grau de parentesco">Sem grau de parentesco</option>
+                                    </select>
+                                    <label for="grau-parentesco2">Grau de parentesco</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--
+                    <div class="col-auto">
+                        <img src="images/home.jpg" class="img-thumbnail dimension">
+                    </div>
+                    -->
+                </div>
+            </div>
+            <div class="tab-pane fade" id="dependents">
+                <div class="row border g-0 rounded shadow-sm">
+                    <div class="col p-4">
+                        <h3>Dependentes</h3>
+                        <div class="row">
+                            <div class="col">
+                                <!-- Nome dependente input -->
+                                <div class="form-floating mb-3">
+                                    <input type="text" id="nome-dependente" class="form-control"
+                                           placeholder="Nome"
+                                           name="nome-dependente" value="{{funcionario.nome_dependente1}}"
+                                           maxlength="190"/>
+                                    <label for="nome-dependente">Nome</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- CPF dependente 1 input -->
+                                <div class="form-floating mb-3">
+                                    <input type="text" id="cpf-dependente" class="form-control"
+                                           placeholder="CPF"
+                                           name="cpf-dependente" value="{{funcionario.cpf_dependente1}}"
+                                           maxlength="20"/>
+                                    <label for="cpf-dependente">CPF</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- CPF dependente 1 input -->
+                                <div class="form-floating mb-3">
+                                    <input type="text" id="nascimento-dependente" class="form-control"
+                                           placeholder="Data Nascimento"
+                                           name="nascimento-dependente" value="{{funcionario.nascimento_dependente1}}"
+                                           maxlength="20"/>
+                                    <label for="nascimento-dependente">Data Nascimento</label>
+                                </div>
+                            </div>
+                            <div class="col depois">
+                                <!-- Grau de Parentesco 1 input -->
+                                <div class="form-floating mb-3">
+                                    <select id="grau-parentesco-dependente" class="form-select"
+                                            name="grau-parentesco-dependente">
+                                        {% if funcionario.grau_parentesco_dependente1 %}
+                                        <option selected>{{funcionario.grau_parentesco_dependente1}}</option>
+                                        {% else %}
+                                        <option selected>Selecione</option>
+                                        {% endif %}
+                                        <option value="1º Grau">1º Grau</option>
+                                        <option value="2º Grau">2º Grau</option>
+                                        <option value="3º Grau">3º Grau</option>
+                                        <option value="Sem grau de parentesco">Sem grau de parentesco</option>
+                                    </select>
+                                    <label for="grau-parentesco-dependente">Grau de Parentesco</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <!-- Nome dependente input -->
+                                <div class="form-floating mb-3">
+                                    <input type="text" id="nome-dependente2" class="form-control"
+                                           placeholder="Nome"
+                                           name="nome-dependente2" value="{{funcionario.nome_dependente2}}"
+                                           maxlength="190"/>
+                                    <label for="nome-dependente2">Nome</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- CPF dependente 1 input -->
+                                <div class="form-floating mb-3">
+                                    <input type="text" id="cpf-dependente2" class="form-control"
+                                           placeholder="CPF"
+                                           name="cpf-dependente2" value="{{funcionario.cpf_dependente2}}"
+                                           maxlength="20"/>
+                                    <label for="cpf-dependente2">CPF</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- CPF dependente 1 input -->
+                                <div class="form-floating mb-3">
+                                    <input type="text" id="nascimento-dependente2" class="form-control"
+                                           placeholder="Data Nascimento"
+                                           name="nascimento-dependente2"
+                                           value="{{funcionario.nascimento_dependente2}}" maxlength="20"/>
+                                    <label for="nascimento-dependente2">Data Nascimento</label>
+                                </div>
+                            </div>
+                            <div class="col depois">
+                                <!-- Grau de Parentesco 1 input -->
+                                <div class="form-floating mb-3">
+                                    <select id="grau-parentesco-dependente2" class="form-select"
+                                            name="grau-parentesco-dependente2">
+                                        {% if funcionario.grau_parentesco_dependente2 %}
+                                        <option selected>{{funcionario.grau_parentesco_dependente2}}</option>
+                                        {% else %}
+                                        <option selected>Selecione</option>
+                                        {% endif %}
+                                        <option value="1º Grau">1º Grau</option>
+                                        <option value="2º Grau">2º Grau</option>
+                                        <option value="3º Grau">3º Grau</option>
+                                        <option value="Sem grau de parentesco">Sem grau de parentesco</option>
+                                    </select>
+                                    <label for="grau-parentesco-dependente2">Grau de Parentesco</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <!-- Nome dependente input -->
+                                <div class="form-floating mb-3">
+                                    <input type="text" id="nome-dependente3" class="form-control"
+                                           placeholder="Nome"
+                                           name="nome-dependente3" value="{{funcionario.nome_dependente3}}"
+                                           maxlength="190"/>
+                                    <label for="nome-dependente3">Nome</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- CPF dependente 1 input -->
+                                <div class="form-floating mb-3">
+                                    <input type="text" id="cpf-dependente3" class="form-control"
+                                           placeholder="CPF"
+                                           name="cpf-dependente3" value="{{funcionario.cpf_dependente3}}"
+                                           maxlength="20"/>
+                                    <label for="cpf-dependente3">CPF</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- CPF dependente 1 input -->
+                                <div class="form-floating mb-3">
+                                    <input type="text" id="nascimento-dependente3" class="form-control"
+                                           placeholder="Data Nascimento"
+                                           name="nascimento-dependente3"
+                                           value="{{funcionario.nascimento_dependente3}}" maxlength="20"/>
+                                    <label for="nascimento-dependente3">Data Nascimento</label>
+                                </div>
+                            </div>
+                            <div class="col depois">
+                                <!-- Grau de Parentesco 1 input -->
+                                <div class="form-floating mb-3">
+                                    <select id="grau-parentesco-dependente3" class="form-select"
+                                            name="grau-parentesco-dependente3">
+                                        {% if funcionario.grau_parentesco_dependente3 %}
+                                        <option selected>{{funcionario.grau_parentesco_dependente3}}</option>
+                                        {% else %}
+                                        <option selected>Selecione</option>
+                                        {% endif %}
+                                        <option value="1º Grau">1º Grau</option>
+                                        <option value="2º Grau">2º Grau</option>
+                                        <option value="3º Grau">3º Grau</option>
+                                        <option value="Sem grau de parentesco">Sem grau de parentesco</option>
+                                    </select>
+                                    <label for="grau-parentesco-dependente3">Grau de Parentesco</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <!-- Nome dependente input -->
+                                <div class="form-floating mb-3">
+                                    <input type="text" id="nome-dependente4" class="form-control"
+                                           placeholder="Nome"
+                                           name="nome-dependente4" value="{{funcionario.nome_dependente4}}"
+                                           maxlength="190"/>
+                                    <label for="nome-dependente4">Nome</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- CPF dependente 1 input -->
+                                <div class="form-floating mb-3">
+                                    <input type="text" id="cpf-dependente4" class="form-control"
+                                           placeholder="CPF"
+                                           name="cpf-dependente4" value="{{funcionario.cpf_dependente4}}"
+                                           maxlength="20"/>
+                                    <label for="cpf-dependente4">CPF</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <!-- CPF dependente 1 input -->
+                                <div class="form-floating mb-3">
+                                    <input type="text" id="nascimento-dependente4" class="form-control"
+                                           placeholder="Data Nascimento"
+                                           name="nascimento-dependente4"
+                                           value="{{funcionario.nascimento_dependente4}}" maxlength="20"/>
+                                    <label for="nascimento-dependente4">Data Nascimento</label>
+                                </div>
+                            </div>
+                            <div class="col depois">
+                                <!-- Grau de Parentesco 1 input -->
+                                <div class="form-floating mb-3">
+                                    <select id="grau-parentesco-dependente4" class="form-select"
+                                            name="grau-parentesco-dependente4">
+                                        {% if funcionario.grau_parentesco_dependente4 %}
+                                        <option selected>{{funcionario.grau_parentesco_dependente4}}</option>
+                                        {% else %}
+                                        <option selected>Selecione</option>
+                                        {% endif %}
+                                        <option value="1º Grau">1º Grau</option>
+                                        <option value="2º Grau">2º Grau</option>
+                                        <option value="3º Grau">3º Grau</option>
+                                        <option value="Sem grau de parentesco">Sem grau de parentesco</option>
+                                    </select>
+                                    <label for="grau-parentesco-dependente4">Grau de Parentesco</label>
+                                </div>
+                            </div>
+                        </div>
+                        <!--
+                        <div class="row">
+                            <div class="col">
+                                <button type="button" id="adicionarDependente" class="btn btn-success w-100">Adicionar Dependente</button>
+                            </div>
+                        </div>
+                        -->
+                    </div>
+                    <!--
+                    <div class="col-auto">
+                        <img src="images/home.jpg" class="img-thumbnail dimension">
+                    </div>
+                    -->
                 </div>
             </div>
         </div>
-        <div class="tab-pane fade" id="health">
-            <div class="row border g-0 rounded shadow-sm">
-                <div class="col p-4">
-                    <h3>Saúde</h3>
-                    <div class="row">
-                        <div class="col">
-                            <!-- Alergias input -->
-                            <div class="form-floating mb-3">
-                                <input type="text" id="alergias" class="form-control" placeholder="Alergias"
-                                       name="alergias"/>
-                                <label for="alergias">Alergias</label>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <!-- Tratamento de Saúde input -->
-                            <div class="form-floating mb-3">
-                                <input type="text" id="tratamento-saude" class="form-control"
-                                       placeholder="Tratamento de Saúde" name="tratamento-saude"/>
-                                <label for="tratamento-saude">Tratamento de Saúde</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <!-- Uso de medicamento contínuo input -->
-                            <div class="form-floating mb-3">
-                                <input type="text" id="medicamento-continuo" class="form-control"
-                                       placeholder="Uso de medicamento contínuo"
-                                       name="medicamento-continuo"/>
-                                <label for="medicamento-continuo">Uso de medicamento contínuo</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <img src="images/home.jpg" class="img-thumbnail dimension">
-                </div>
-            </div>
+        <div>
+            <button type="submit" class="btn btn-primary mt-3">Salvar Alterações</button>
         </div>
-        <div class="tab-pane fade" id="work">
-            <div class="row border g-0 rounded shadow-sm">
-                <div class="col p-4">
-                    <h3>Trabalho</h3>
-                    <div class="row">
-                        <div class="col">
-                            <!-- Empresa input -->
-                            <div class="form-floating mb-3">
-                                <input type="text" id="empresa" class="form-control" placeholder="Empresa"
-                                       name="empresa" required/>
-                                <label for="empresa">Empresa</label>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <!-- Email Corporativo input -->
-                            <div class="form-floating mb-3">
-                                <input type="email" id="email-corporativo" class="form-control"
-                                       placeholder="Email Corporativo" name="email-corporativo" required/>
-                                <label for="email-corporativo">Email Corporativo</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <!-- Gerente input -->
-                            <div class="form-floating mb-3">
-                                <input type="text" id="gerente" class="form-control" placeholder="Gerente"
-                                       name="gerente" required/>
-                                <label for="gerente">Gerente</label>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <!-- Departamento input -->
-                            <div class="form-floating mb-3">
-                                <input type="text" id="departamento" class="form-control" placeholder="Departamento"
-                                       name="departamento" required/>
-                                <label for="departamento">Departamento</label>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <!-- Cargo input -->
-                            <div class="form-floating mb-3">
-                                <input type="text" id="cargo" class="form-control" placeholder="Cargo" name="cargo"
-                                       required/>
-                                <label for="cargo">Cargo</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <img src="images/home.jpg" class="img-thumbnail dimension">
-                </div>
-            </div>
-        </div>
-        <div class="tab-pane fade" id="contact">
-            <div class="row border g-0 rounded shadow-sm">
-                <div class="col p-4">
-                    <h3>Contato</h3>
-                    <div class="row">
-                        <div class="col">
-                            <!-- Telefone Pessoal 1 input -->
-                            <div class="form-floating mb-3">
-                                <input type="text" id="telefonepessoal1" class="form-control"
-                                       placeholder="Telefone Pessoal 1" name="telefonepessoal1" required/>
-                                <label for="nome">Telefone Pessoal</label>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <!-- Telefone Pessoal 2 input -->
-                            <div class="form-floating mb-3">
-                                <input type="text" id="telefonepessoal2" class="form-control"
-                                       placeholder="Telefone Pessoal 2" name="telefonepessoal2"/>
-                                <label for="nome">Telefone Pessoal 2</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <!-- Nome Contato 1 input -->
-                            <div class="form-floating mb-3">
-                                <input type="text" id="nome-emergencia1" class="form-control"
-                                       placeholder="Nome Contato de Emergência"
-                                       name="nome-emergencia1" required/>
-                                <label for="nome-emergencia1">Nome Contato de Emergência</label>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <!-- Telefone emergencial 1 input -->
-                            <div class="form-floating mb-3">
-                                <input type="text" id="telefone-emergencia1" class="form-control"
-                                       placeholder="Telefone Contato de Emergência"
-                                       name="telefone-emergencia1" required/>
-                                <label for="telefone-emergencia1">Telefone Contato de Emergência</label>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <!-- Grau de Parentesco 1 input -->
-                            <div class="form-floating mb-3">
-                                <select id="grau-parentesco1" class="form-select" name="grau-parentesco1">
-                                    <option selected>Selecione:</option>
-                                    <option>1º Grau</option>
-                                    <option>2º Grau</option>
-                                    <option>3º Grau</option>
-                                    <option>Sem grau de parentesco</option>
-                                </select>
-                                <label for="grau-parentesco1">Grau de Parentesco</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <!-- Nome Contato 2 input -->
-                            <div class="form-floating mb-3">
-                                <input type="text" id="nome-emergencia2" class="form-control"
-                                       placeholder="Nome Contato de Emergência"
-                                       name="nome-emergencia2"/>
-                                <label for="nome-emergencia2">Nome Contato de Emergência 2</label>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <!-- Telefone emergencia 2 input -->
-                            <div class="form-floating mb-3">
-                                <input type="text" id="telefone-emergencia2" class="form-control"
-                                       placeholder="Telefone Contato de Emergência"
-                                       name="telefone-emergencia2"/>
-                                <label for="telefone-emergencia2">Telefone Contato de Emergência 2</label>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <!-- Grau de parentesco input -->
-                            <div class="form-floating mb-3">
-                                <select id="grau-parentesco2" class="form-select" name="grau-parentesco2">
-                                    <option selected>Selecione:</option>
-                                    <option>1º Grau</option>
-                                    <option>2º Grau</option>
-                                    <option>3º Grau</option>
-                                    <option>Sem grau de parentesco</option>
-                                </select>
-                                <label for="grau-parentesco2">Grau de parentesco</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <img src="images/home.jpg" class="img-thumbnail dimension">
-                </div>
-            </div>
-        </div>
-    </div>
-    <div>
-        <button type="submit" class="btn btn-primary mt-3">Salvar Alterações</button>
-    </div>
+    </form>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
@@ -402,5 +748,6 @@
 {% load static %}
 <script src="{% static 'load_city.js' %}"></script>
 <script src="{% static 'load_cep.js' %}"></script>
+<!--<script src="{% static 'adicionar_dependente.js' %}"></script> -->
 </body>
 </html>
